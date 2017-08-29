@@ -1,41 +1,36 @@
 function onlyEven (array) {
-  let results = array.filter(function (element){
-    return element%2 ===0;
+  return array.filter(number=> {
+    return number%2===0;
   });
-  return results;
 }
 
 function onlyOneWord (array) {
-  let results = array.filter(function(element){
-    return !element.includes(" ");
+  return array.filter(word=>{
+    return !word.includes(" ");
   });
-  return results;
 }
 
 function positiveRowsOnly (array) {
-  let results = array.filter(function (element){
-    if (element.sort()[0]>0){
-      return element;
-    }
+  return array.filter(subarray=>{
+    if (subarray.sort()[0]>0) return subarray;
   });
-  return results;
 }
 
 function allSameVowels (array) {
-  let results = array.filter(function (element){
-    var vowelArray = [];
-    for (let i=0; i<element.length; i++){
-      if (element[i] === 'a' || element[i] === 'e' || element[i] === 'i' || element[i] === 'o' || element[i] === 'u'){
-        vowelArray.push(element[i]);
+  return array.filter(word=>{
+    // return word;
+    let vowelKeeper='';
+    for (let i=0; i<word.length; i++){
+      if (word[i] === 'a' || word[i] === 'e' || word[i] === 'i' || word[i] === 'o' || word[i] === 'u') {
+        let vowel=word[i];
+        if (vowelKeeper===''){
+          vowelKeeper = word[i];
+        } else {
+          return (vowel===vowelKeeper);
+        }
       }
     }
-    for (let j=0; j<vowelArray.length; j++){
-      if (vowelArray[j] !== vowelArray[j+1]){
-        return;
-      } return element;
-    }
   });
-  return results;
 }
 
 module.exports = {

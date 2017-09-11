@@ -1,57 +1,45 @@
 function sum (array) {
-  return array.reduce(function(acc, val) {
-  return acc + val;
-}, 0);
+  return array.reduce((a,b)=>{
+    return a+b;
+  })
 }
 
 
 function productAll (array){
-  var subResult = array.reduce(function(acc, curr) {
-  return acc.concat(curr);
-  });
-  for (let j=0; j<subResult.length; j++){
-    if (j===0){
-      results = subResult[j];
-    } else {
-      results *= subResult[j];
-    }
-  }
-return results;
+  return array.reduce((a,b)=>{
+    return a * b.reduce((x,y)=>{
+      return x*y;
+    }, 1);
+  }, 1)
 }
 
-// function objectify (array) {
-//   console.log(array);
-//   results = {};
-//   for (let i=0; i<array.length; i++){
-//     var innerArray = array[i];
-//     for (let j=0; j<innerArray.length-1; j++){
-//       results[innerArray[j]] = innerArray[j+1];
+
+// function objectify(array){
+//   let results = {};
+//   array.reduce((a,b)=>{
+//     for (let i=0; i<b.length; i++){
+//       results[b[i]]=b[i+1];
+//       i++;
 //     }
-//   }
+//   },{})
 //   return results;
 // }
 
 function objectify(array){
-  var results = array.reduce(function (acc, curr){
-    acc[curr[0]]=curr[1];
-    return acc;
-  }, {});
-  return results;
+  return array.reduce((object,subArray)=>{
+    object[subArray[0]]=subArray[1];
+    return object;
+  },{});
 }
 
 function luckyNumbers (array) {
-// console.log(array);
-return array.reduce(function (acc, curr, index){
-  console.log(index);
-  console.log(acc);
-    if (index === 0){
-      return acc + curr;
-    } else if (index !== array.length-1){
-      return acc + ', ' + curr;
+  return array.reduce((a,b, index)=>{
+    if (index===array.length-1) {
+      return a + `and ${b}`;
     } else {
-      return acc + ', and ' + curr;
+      return a + `${b}, `;
     }
-  }, "Your lucky numbers are: ");
+  },'Your lucky numbers are: ')
 }
 
 module.exports = {
